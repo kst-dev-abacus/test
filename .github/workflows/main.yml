@@ -13,3 +13,6 @@ jobs:
       - name: Gradle Build
         run: ./gradlew build
         shell: bash
+      - name: Make Jar
+        run: ./gradlew bootJar
+        shell: bash
