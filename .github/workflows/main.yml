@@ -17,7 +17,7 @@ jobs:
 #        run: ./gradlew bootJar
 #        shell: bash
       - name: List
-        run: ls -al ./build
+        run: ls -al ./build/libs
         shell: bash
       - name: Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
