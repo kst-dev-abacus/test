@@ -1,0 +1,15 @@
+name: Gradle Build and Deploy
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Grant permission gradlew
+        run: chmod +x ./gradlew
+        shell: bash
+      - name: Gradle Build
+        run: ./gradlew build
+        shell: bash
