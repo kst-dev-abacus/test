@@ -24,3 +24,7 @@ tasks.named('test') {
 jar {
 	enabled = false
 }
+
+bootJar {
+    baseName = 'app'
+}
