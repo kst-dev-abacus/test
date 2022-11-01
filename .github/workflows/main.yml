@@ -13,6 +13,26 @@ jobs:
       - name: Gradle Build
         run: ./gradlew build
         shell: bash
-      - name: Make Jar
-        run: ./gradlew bootJar
-        shell: bash
+#      - name: Make Jar
+#        run: ./gradlew bootJar
+#        shell: bash
+      - name: Deploy
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+            username: 'root'
+            server: 'your server ip'
+            ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }} 
+            #password: 
+            local_path: './static/*'
+            remote_path: '/var/www/app'
+            sftpArgs: '-o ConnectTimeout=5'
+      - name: Execute remote shell
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd git/swlabs-helper
+            sh deploy.sh
